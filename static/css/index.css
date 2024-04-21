@@ -1,0 +1,57 @@
+@import "./global.css";
+:root{--wscreen: 376px;--hscreen:753px}
+body{
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(5deg, var(--blue), var(--gray-bg));
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+#smartphone{
+    width: var(--wscreen);
+    height: var(--hscreen);
+    position: relative;
+}
+#iphone{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 10;
+    pointer-events: none;
+}
+.screen{
+    width: 331px;
+    height: 583px;
+    border-radius: 2px;
+    background-color: #fff;
+    overflow: hidden;
+    position: relative;
+    z-index: 9;
+    top: 84px;
+    left: 23px;
+}
+
+#i-wifi{
+    width: 20px;
+    height: 20px;
+    position: relative;
+}
+#i-wifi > .fa-minus{
+    rotate: 133deg;
+    left: 3px;
+    scale: 1.4;
+    top: 0px;
+    color: #f00;
+}
+#i-wifi > .fa-wifi,
+#i-wifi > .fa-minus{
+    position: absolute;
+}
+footer{
+    width: 100%;
+    height: calc(100vh - var(--hscreen));
+    position: relative;
+}
+footer address{
+    display: none;
+}
