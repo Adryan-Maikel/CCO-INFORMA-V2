@@ -7,13 +7,15 @@ SERVICE = get_sheet("sheets", "v4", credentials=CREDS)
 SHEETID = "1ZqJfSMkqz2ywSmNjw_r_bTgr9QxP6IgiilMdyIim8II"
 
 
-def get_data():
-    range_name = "teste!A:B"
-
-    sheet = SERVICE.spreadsheets()
-    result = sheet.values().get(spreadsheetId=SHEETID, range=range_name)\
+def get_operators():
+    OPERATORS = {}
+    RAGE_NAME = "teste!A:B"
+    SHEET = SERVICE.spreadsheets()
+    VALUES = SHEET.values().get(spreadsheetId=SHEETID, range=RAGE_NAME)\
         .execute()
-    return result.get("values", [])
+    for operator, cracha in VALUES.get("values", [])[1:]:
+        OPERATORS[operator] = cracha
+    return OPERATORS
 
 
 def add_peaple(name, id_cracha):
@@ -43,5 +45,5 @@ def del_peaple(row_id: int):
 
 
 if __name__ == "__main__":
-    print(get_data())
-    add_peaple("teste", 0)
+    print(get_operators())
+    # add_peaple("teste", 0)

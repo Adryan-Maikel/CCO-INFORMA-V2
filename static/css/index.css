@@ -23,14 +23,26 @@ body{
     width: 331px;
     height: 583px;
     border-radius: 2px;
-    background-color: #fff;
+    background-color: #efefef;
     overflow: hidden;
     position: relative;
     z-index: 9;
     top: 84px;
-    left: 23px;
+    left: 22px;
 }
-
+.status-bar{
+    width: 100%;
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 1px -13px 20px 7px #000;
+    position: relative;
+    z-index: 8;
+}
+.status-bar .row{
+    gap: 4px;
+}
 #i-wifi{
     width: 20px;
     height: 20px;
@@ -46,6 +58,12 @@ body{
 #i-wifi > .fa-wifi,
 #i-wifi > .fa-minus{
     position: absolute;
+}
+iframe{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 8;
 }
 footer{
     width: 100%;
