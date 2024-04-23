@@ -13,13 +13,26 @@
     <header>
         <h1>APP</h1>
     </header>
-    <main>
-        <div id="smartphone">
+    <main class="center">
+        <section id="smartphone">
             <img id="iphone" src="/static/img/iphone.png" alt="imagem de um iphone 6">
             <div class="screen">
+                <div class="status-bar row">
+                    <span id="relogio">00:00</span>
+                    <div id="open-menu" class="icons center">
+                        <i class="fa-solid fa-gear"></i>
+                    </div>
+                    <div class="row">
+                        <div id="i-wifi" class="icons center">
+                            <i class="fa-solid fa-wifi"></i>
+                            <i class="fa-solid fa-minus"></i>
+                        </div>
+                        <i class="fa-solid fa-battery-full"></i>
+                    </div>
+                </div>
                 <div class="menu-options">
                     <div class="row">
-                        <label for="show_seconds" class="row">
+                        <label for="show_seconds" class="row button">
                             <span>Mostrar segundos</span>
                             <input type="checkbox" id="show_seconds" class="show_seconds">
                             <div class="icons center">
@@ -27,7 +40,7 @@
                                 <i class="fa-solid fa-x"></i>
                             </div>
                         </label>
-                        <label for="dark_mode" class="row">
+                        <label for="dark_mode" class="row button">
                             <span>Dark mode</span>
                             <input type="checkbox" name="dark_mode" id="dark_mode">
                             <div class="icons center">
@@ -36,32 +49,11 @@
                             </div>
                         </label>
                     </div>
-                    <div class="row">
-                        <span>teste1</span>
-                    </div>
-                    <div class="row">
-                        <span>teste2</span>
-                    </div>
-                </div>
-                <div class="status-bar">
-                    <span id="relogio">00:00</span>
-                    <div class="row">
-                        <button id="open-menu">
-                            <i class="fa-solid fa-gear"></i>
-                        </button>
-                    </div>
-                    <div class="row">
-                        <div id="i-wifi">
-                            <i class="fa-solid fa-wifi"></i>
-                            <i class="fa-solid fa-minus"></i>
-                        </div>
-                        <i class="fa-solid fa-battery-full"></i>
-                    </div>
                 </div>
                 <iframe src="/login" frameborder="0"></iframe>
             </div>
             <div id="buttons"></div>
-        </div>
+        </section>
     </main>
     <footer>
         <address>Adryan Maikel</address>

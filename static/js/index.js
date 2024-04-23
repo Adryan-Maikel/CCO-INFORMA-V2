@@ -18,6 +18,7 @@ function load_cookie_config(){
 }
 var configurations = load_cookie_config()
 
+// Exibir os segundos
 const input_show_seconds = window.document.getElementById("show_seconds")
 input_show_seconds.checked = configurations["show_seconds"]
 input_show_seconds.addEventListener("click", (events)=>{
@@ -25,6 +26,17 @@ input_show_seconds.addEventListener("click", (events)=>{
     update_cookie_config(configurations)
 })
 
+COLORS_WHITE = {
+    "dark": "#222",
+    "white": "#FFF",
+    "white_bg": "#F5F5F5",
+    "gray_bg": "#CCC",
+    "blue": "#007bff",
+    "red": "#dc3545",
+    "green": "#28a745"
+}
+
+// Modo escuro
 const input_dark_mode = window.document.getElementById("dark_mode")
 input_dark_mode.checked = configurations["dark_mode"]
 input_dark_mode.addEventListener("click", (events)=>{
@@ -32,6 +44,7 @@ input_dark_mode.addEventListener("click", (events)=>{
     update_cookie_config(configurations)
 })
 
+// Horário
 const menu = window.document.querySelector(".menu-options")
 window.document.getElementById("open-menu").addEventListener("click", ()=>menu.classList.toggle("open"))
 const clock = window.document.getElementById("relogio")

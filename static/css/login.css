@@ -1,20 +1,6 @@
 @import "./global.css";
-.row{gap: 5px}
-.row,form>span{position: relative;top: 200px}
-footer{display: none}
-.box{
-    height: 30px;
-    padding: 5px;
-    border-radius: 7px;
-    color: var(--white);
-    background: var(--dark);
-    cursor: text;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-}
-.box>input{width: 100px;color: var(--white)}
-form>span{display: none;color: var(--red)}
+
+
+input#operator{width: 100px}
+form>span{display: none;color: #FA0A0A}
 form.error>span{display: block}
-form button{background-color: var(--blue);color: var(--white); padding: 0 4px}

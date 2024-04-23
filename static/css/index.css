@@ -1,73 +1,23 @@
 @import "./global.css";
 :root{--wscreen: 376px;--hscreen:753px}
-body{
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(5deg, var(--blue), var(--gray-bg));
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-}
-/* body.dark{
-    background: linear-gradient(5deg, var(--blue), var(--dark));
-} */
-#smartphone{width: var(--wscreen);height: var(--hscreen);position: relative}
-#iphone{width: 100%;height: 100%;position: absolute;z-index: 10;pointer-events: none}
-.screen{
-    width: 331px;
-    height: 583px;
-    border-radius: 2px;
-    background-color: var(--white-bg);
-    overflow: hidden;
-    position: relative;
-    z-index: 9;
-    top: 84px;
-    left: 22px;
-}
-.menu-options{
-    width: 100%;
-    height: 100%;
-    background: #f2f2f2;
-    position: absolute;
-    top: -100%;
-    z-index: 8;
-    transition: top .5s cubic-bezier(0.65, 0.05, 0.36, 1);
-}
-.menu-options.open{top: 25px}
-.menu-options>.row{
-    height: 40px;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 6px;
-}
-label{border-radius: 7px;padding: 3px;cursor: pointer}
-label.row{gap: 4px}
-.icons{width: 20px;height: 20px;position: relative;overflow: hidden}
-.icons>i{position: absolute;font-size: 20px;transition: top .5s ease-in-out}
-.icons>i.fa-x{color: var(--red)}
-.icons>i.fa-check{color: var(--green)}
-input[type="checkbox"]:checked~.icons>i.fa-check,input[type="checkbox"]~.icons>i.fa-x{top: 0}
-input[type="checkbox"]~.icons>i.fa-check,input[type="checkbox"]:checked~.icons>i.fa-x{top: -20px}
-
-.status-bar{
-    width: 100%;
-    padding: 0 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 1px -13px 20px 7px #000;
-    position: relative;
-    z-index: 8;
-    background-color: var(--white-bg);
-}
-.status-bar>.row>#open-menu>i{font-size: 20px}
-.menu-options~.status-bar>.row>#open-menu{position: absolute;left: calc(50% - 10px);;transition: rotate .5s}
-.menu-options.open~.status-bar>.row>#open-menu{rotate: 180deg}
-.menu-options~.status-bar>.row>#open-menu>i{width: 100%;height: 100%;position: relative;top: 2px}
-#relogio{width: 65px;}
-#i-wifi{width: 20px;height: 20px;position: relative}
-#i-wifi>.fa-minus{rotate: 133deg;left: 3px;scale: 1.4;top: 0px;color: var(--red)}
-#i-wifi>.fa-wifi,#i-wifi>.fa-minus{position: absolute}
-#i-wifi~i.fa-battery-full{rotate: -90deg}
-iframe{width: 100%;height: 100%;position: relative;z-index: 7}
-footer{width: 100%;height: calc(100vh - var(--hscreen));position: relative}
-footer address{display: none}
+body{background: linear-gradient(5deg, var(--blue), #FFF);
+    background-size: 100% 100%;background-repeat: no-repeat}
+body,main,#iphone{width: 100%;height: 100%;}
+#smartphone{width: var(--wscreen); height: var(--hscreen); position: relative}
+#iphone{position: absolute;z-index: 11;pointer-events: none}
+.screen{width: 332px;height: 584px;border-radius: 2px;overflow: hidden;position: relative;top: 84px;left: 22px;z-index: 10}
+/*Barra de status*/
+.status-bar{justify-content: space-between;padding: 0 6px;background-color: #FAFAFA;box-shadow: 1px -13px 20px 7px #000;position: relative;z-index: 9}
+.status-bar>#open-menu{position: absolute;left: calc(50% - 10px)}
+.status-bar>#open-menu>i{font-size: 20px;top: 1px}
+/*Icone do Wifi*/
+.icons>.fa-minus{rotate: 133deg;left: 3px;scale: 1.4;top: 0px}
+.icons>.fa-wifi,.icons>.fa-minus{position: absolute}
+/*Menu de opções*/
+.menu-options{width: 100%;position: absolute;top: -100%;z-index: 8;background-color: #EBEBEB;transition: top .5s}
+.menu-options.open{top: 24px;}
+.menu-options div.row{height: 50px;align-items: center; justify-content: space-between;padding: 0 6px}
+/*Iframe*/
+.menu-options, iframe{height: calc(100% - 24px)}
+iframe{width: 100%; background-color: #FEFEFE; position: relative; z-index: 7}
+footer{width: 100%; height: calc(100vh - var(--hscreen)); position: relative}

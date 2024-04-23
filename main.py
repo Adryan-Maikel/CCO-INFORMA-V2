@@ -19,7 +19,7 @@ def login():
     operator = request.cookies.get("operator", "")
     if operator and operator in OPERATORS:
         return render_template("home.html", operator=operator)
-    return render_template("login.html", classList="")
+    return render_template("login.html", _class="")
 
 
 @APP.route("/home", methods=["POST"])
@@ -27,7 +27,7 @@ def home():
     operator = request.form.get("operator", "")
     if operator in OPERATORS:
         return render_template("home.html", operator=operator)
-    return render_template("login.html", classList="error")
+    return render_template("login.html", _class="error")
 
 
 if __name__ == "__main__":

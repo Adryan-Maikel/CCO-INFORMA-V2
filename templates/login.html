@@ -6,27 +6,24 @@
     <title>Login</title>
     <link rel="stylesheet" href="/static/css/login.css">
     <script src="/static/js/login.js" defer></script>
-    <!-- font-awesome -->
     <script src="https://kit.fontawesome.com/3b629842c1.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
         <h1>Login</h1>
     </header>
-    <main>
-        <section>
-            <form action="/home" class="{{ classList }}" method="post">
-                <div class="row">
-                    <label for="operator" class="box">
-                        <i class="fa-solid fa-user"></i>
-                        <input type="text" name="operator" id="operator">
-                    </label>
-                    <button type="submit">Entrar</button>
-                </div>
-                <span>Operador não encontrado.</span>
-            </form>
-        </section>
-    </main>
+    <section>
+        <form action="/home" class="{{ _class }}" method="post" autocomplete="off">
+            <div class="row">
+                <label for="operator" class="box">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" name="operator" id="operator" placeholder="Operador">
+                </label>
+                <button type="submit" class="button">Entrar</button>
+            </div>
+            <span>Operador não encontrado.</span>
+        </form>
+    </section>
     <footer>
         <address>Adryan Maikel</address>
     </footer>
