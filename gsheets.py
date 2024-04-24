@@ -4,46 +4,63 @@ from googleapiclient.discovery import build as get_sheet
 CREDS = Credentials.from_service_account_file("credentials.json", scopes=[
     "https://www.googleapis.com/auth/spreadsheets"])
 SERVICE = get_sheet("sheets", "v4", credentials=CREDS)
-SHEETID = "1ZqJfSMkqz2ywSmNjw_r_bTgr9QxP6IgiilMdyIim8II"
+
+SHEETS = {"informations": "1ZqJfSMkqz2ywSmNjw_r_bTgr9QxP6IgiilMdyIim8II",
+          "cco-informa": ""}
 
 
-def get_operators():
-    OPERATORS = {}
-    RAGE_NAME = "teste!A:B"
-    SHEET = SERVICE.spreadsheets()
-    VALUES = SHEET.values().get(spreadsheetId=SHEETID, range=RAGE_NAME)\
-        .execute()
-    for operator, cracha in VALUES.get("values", [])[1:]:
-        OPERATORS[operator] = cracha
-    return OPERATORS
+def get_range(_sheet: str, table_name: str, range: str) -> list:
+    VALUES = SERVICE.spreadsheets().values()\
+        .get(spreadsheetId=_sheet, range=f"{table_name}!{range}")\
+        .execute().get("values", [])
+    return VALUES
 
 
-def add_peaple(name, id_cracha):
-    request = SERVICE.spreadsheets().values().append(
-        spreadsheetId=SHEETID, range="teste!A:B", valueInputOption="RAW",
-        body={"values": [[name, id_cracha]]})
-    # copy(name)
-    request.execute()
-
-
-def del_peaple(row_id: int):
-    sheets = SERVICE.spreadsheets().get(spreadsheetId=SHEETID).execute()\
+def del_row(_sheet: str, sheet_name: str, row: int):
+    SHEETS = SERVICE.spreadsheets().get(spreadsheetId=_sheet).execute()\
         .get('sheets', [])
-    for sheet in sheets:
-        if sheet["properties"]["title"] == "teste":
-            sheet_id = sheet['properties']['sheetId']
+    for sheet in SHEETS:
+        if sheet["properties"]["title"] == sheet_name:
+            SHEET_ID = sheet['properties']['sheetId']
             break
-
-    if sheet_id is None:
+    if SHEET_ID is None:
         return
 
-    request_body = {"requests": [{"deleteDimension": {"range": {
-        "sheetId": sheet_id, "dimension": "ROWS",
-        "startIndex": row_id, "endIndex": row_id + 1}}}]}
-    SERVICE.spreadsheets().batchUpdate(spreadsheetId=SHEETID,
-                                       body=request_body).execute()
+    SERVICE.spreadsheets().batchUpdate(spreadsheetId=_sheet, body={
+        "requests": [{"deleteDimension": {
+            "range": {"sheetId": SHEET_ID, "dimension": "ROWS",
+                      "startIndex": row, "endIndex": row + 1}}}]}).execute()
 
+
+def add_row(_sheet: str, _range: str, values: list[str]):
+    SERVICE.spreadsheets().values().append(
+        spreadsheetId=_sheet, range=_range, valueInputOption="RAW",
+        body={"values": [values]}).execute()
+
+
+def update_row(_sheet: str, _range: str, values: list[str]):
+    SERVICE.spreadsheets().values()\
+        .update(spreadsheetId=_sheet, range=_range, valueInputOption="RAW",
+                body={"values": [values]}).execute()
+
+
+OPERATORS = {
+    "get": lambda: get_range(SHEETS["informations"], "Operators", "A2:B"),
+    "add": lambda vals: add_row(SHEETS["informations"], "Operators!A:B", vals),
+    "del": lambda row: del_row(SHEETS["informations"], "Operators", row),
+    "update": lambda operator, cracha, row: update_row(
+        SHEETS["informations"], f"Operators!A{row}:B{row}", [operator, cracha])
+}
+"""\
+OPERATORS["get"]()
+
+OPERATORS["add"](["Operador", 153])
+
+OPERATORS["del"](9)
+
+OPERATORS["update"]("Adryan", 153, 1)\
+"""
 
 if __name__ == "__main__":
-    print(get_operators())
-    # add_peaple("teste", 0)
+    # print(OPERATORS["get"]())
+    OPERATORS["update"]("Adryan", 154, 1)

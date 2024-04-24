@@ -3,9 +3,8 @@
 """
 
 from flask import Flask, render_template, request
-from gsheets import get_operators
+from gsheets import OPERATORS
 
-OPERATORS = get_operators()
 APP = Flask(__name__)
 
 
@@ -14,10 +13,44 @@ def index():
     return render_template("index.html")
 
 
+@APP.route("/sheet/<name>")
+def sheet(name: str):
+    match name:
+        case "Operators":
+            VALUES = enumerate(OPERATORS["get"]())
+            return render_template("sheets/operators.html", rows=VALUES)
+        case "_":
+            return ""
+
+
+@APP.route("/add-row/<sheet>", methods=["POST"])
+def add_row(sheet):
+    if sheet == "Operators":
+        OPERATORS["add"]([request.form["operator"], request.form["cracha"]])
+        NEW_VALUES = enumerate(OPERATORS["get"]())
+        return render_template("sheets/operators.html", rows=NEW_VALUES)
+
+
+@APP.route("/del-row/<id_row>")
+def del_row(id_row: str):
+    if not id_row.isnumeric():
+        return render_template("sheets/operators.html",
+                               rows=enumerate(OPERATORS["get"]()))
+
+    OPERATORS["del"](int(id_row))
+    NEW_VALUES = enumerate(OPERATORS["get"]())
+    return render_template("sheets/operators.html", rows=NEW_VALUES)
+
+
+# -------------------------------------------------------------------------- #
+#    Depreciado
+# -------------------------------------------------------------------------- #
+
+
 @APP.route("/login")
 def login():
     operator = request.cookies.get("operator", "")
-    if operator and operator in OPERATORS:
+    if operator and operator in [row[0] for row in OPERATORS]:
         return render_template("home.html", operator=operator)
     return render_template("login.html", _class="")
 
@@ -25,7 +58,7 @@ def login():
 @APP.route("/home", methods=["POST"])
 def home():
     operator = request.form.get("operator", "")
-    if operator in OPERATORS:
+    if operator in [row[0] for row in OPERATORS]:
         return render_template("home.html", operator=operator)
     return render_template("login.html", _class="error")
 
