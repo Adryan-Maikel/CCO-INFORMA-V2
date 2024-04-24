@@ -8,11 +8,11 @@ header,input[type="checkbox"]{display: none}
 .column,.center{flex-direction: column;}
 .row,.center{align-items: center}
 .button{color: var(--color-white);background: var(--blue); border-radius: 7px;padding: 5px;cursor: pointer;}
-.box{}
+.box{padding: 5px;}
 /*Icones*/
 .icons{width: 20px;height: 20px;position: relative;overflow: hidden}
 .icons>i{position: absolute}
-i.fa-x, i.fa-minus{color: #FA0A0A}
+i.fa-x, i.fa-minus,span.error{color: #FA0A0A}
 i.fa-check{color: #0AFA0A}
 i.fa-battery-full{rotate: -90deg}
 

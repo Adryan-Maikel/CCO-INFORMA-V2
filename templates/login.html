@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="/static/css/login.css">
-    <script src="/static/js/login.js" defer></script>
+    <script src="/static/js/login.js" type="module" defer></script>
     <script src="https://kit.fontawesome.com/3b629842c1.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -15,13 +15,18 @@
     <section>
         <form action="/home" class="{{ _class }}" method="post" autocomplete="off">
             <div class="row">
+                <img src="/static/img/mob.png" alt="Imagem contendo a logo da empresa Mob-Mobilidade em Transporte, onde a logo é o próprio nome escrito em azul.">
+            </div>
+            <div class="row">
                 <label for="operator" class="box">
                     <i class="fa-solid fa-user"></i>
                     <input type="text" name="operator" id="operator" placeholder="Operador">
                 </label>
                 <button type="submit" class="button">Entrar</button>
             </div>
-            <span>Operador não encontrado.</span>
+            <div class="row">
+                <span class="error">Operador não encontrado.</span>
+            </div>
         </form>
     </section>
     <footer>
