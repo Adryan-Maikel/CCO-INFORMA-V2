@@ -1,0 +1,59 @@
+@import "/static/global.css";
+header, h2{display: none}
+
+caption{
+    position: relative;
+    background: #fff;
+    z-index: 10;
+}
+form{
+    position: absolute;
+    z-index: 9;
+    top: -5px;
+    transition: top .5s ease;
+}
+
+form.open{
+    top: 23px;
+}
+
+caption>.row{gap: 5px;}
+form>.row{justify-content: space-evenly;gap: 1px;background: #fff;}
+form>.row>.box:nth-child(1){width: 17px;}
+form>.row>.box:nth-child(1)>span{display: block;text-align: right}
+form>.row>.box:nth-child(4){width: 48px;}
+form>.row>.box:nth-child(5){width: 55px;}
+
+th,td,.box{
+    padding: 2px 5px;
+}
+form{padding: 2px 2px;}
+form>.row>.box{
+    border: 1px solid;
+}
+
+caption>.row>button{font-size: 18px;}
+td>button, .box>button{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+.box>button{align-items: center;}
+td>button>i, .box>button>i{
+    font-size: 16px;
+    pointer-events: none;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    text-align: right;
+}
+
+input#operator{width: 110px}
+input#cracha{width: 51px;}
+

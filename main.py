@@ -26,20 +26,34 @@ def sheet(name: str):
 @APP.route("/add-row/<sheet>", methods=["POST"])
 def add_row(sheet):
     if sheet == "Operators":
-        OPERATORS["add"]([request.form["operator"], request.form["cracha"]])
+        OPERATORS["add"]([request.form["operator"],
+                          int(request.form["cracha"])])
         NEW_VALUES = enumerate(OPERATORS["get"]())
         return render_template("sheets/operators.html", rows=NEW_VALUES)
 
 
-@APP.route("/del-row/<id_row>")
-def del_row(id_row: str):
-    if not id_row.isnumeric():
-        return render_template("sheets/operators.html",
-                               rows=enumerate(OPERATORS["get"]()))
+@APP.route("/del-row/<sheet>/<id_row>")
+def del_row(sheet, id_row: str):
+    """"""
+    if sheet == "Operators":
+        if not id_row.isnumeric():
+            return render_template("sheets/operators.html",
+                                   rows=enumerate(OPERATORS["get"]()))
+        OPERATORS["del"](int(id_row))
+        NEW_VALUES = enumerate(OPERATORS["get"]())
+        return render_template("sheets/operators.html", rows=NEW_VALUES)
 
-    OPERATORS["del"](int(id_row))
-    NEW_VALUES = enumerate(OPERATORS["get"]())
-    return render_template("sheets/operators.html", rows=NEW_VALUES)
+
+@APP.route("/edit-row/<sheet>/<id_row>", methods=["POST"])
+def edit_row(sheet, id_row: str):
+    if sheet == "Operators":
+        if not id_row.isnumeric():
+            return render_template("sheets/operators.html",
+                                   rows=enumerate(OPERATORS["get"]()))
+        OPERATORS["update"]([request.form["operator"],
+                            int(request.form["cracha"])], int(id_row) + 1)
+        NEW_VALUES = enumerate(OPERATORS["get"]())
+        return render_template("sheets/operators.html", rows=NEW_VALUES)
 
 
 # -------------------------------------------------------------------------- #

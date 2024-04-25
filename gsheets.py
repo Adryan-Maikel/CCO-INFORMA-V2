@@ -48,8 +48,8 @@ OPERATORS = {
     "get": lambda: get_range(SHEETS["informations"], "Operators", "A2:B"),
     "add": lambda vals: add_row(SHEETS["informations"], "Operators!A:B", vals),
     "del": lambda row: del_row(SHEETS["informations"], "Operators", row),
-    "update": lambda operator, cracha, row: update_row(
-        SHEETS["informations"], f"Operators!A{row}:B{row}", [operator, cracha])
+    "update": lambda vals, row: update_row(
+        SHEETS["informations"], f"Operators!A{row}:B{row}", vals)
 }
 """\
 OPERATORS["get"]()
