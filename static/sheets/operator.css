@@ -1,13 +1,13 @@
 @import "/static/global.css";
 header, h2{display: none}
-section{display: flex; justify-content: center;}
+section{width: 100%;}
 caption{
     position: relative;
     background: #fff;
     z-index: 10;
 }
 caption>.row{gap: 5px;}
-
+table{margin-left: 4px;}
 table, form{width: 339px}
 form{
     position: absolute;
@@ -18,8 +18,7 @@ form{
 }
 form.open{top: 23px}
 
-form>.row{width: 337px}
-form>.row{justify-content: start;gap: 1px;background: #fff;}
+form>.row{width: 334px;justify-content: start;gap: 1px;background: #fff;}
 form>.row>.box:nth-child(1){width: 15px}
 form>.row>.box:nth-child(1)>span{display: block;text-align: right}
 form>.row>.box:nth-child(4){width: 45px;}
@@ -46,6 +45,10 @@ td>button>i, .box>button>i{
     pointer-events: none;
 }
 
+button>img{
+    width: 20px;
+}
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -55,6 +58,6 @@ input[type=number] {
     text-align: right;
 }
 
-input#operator{width: 109px;}
+input#operator{width: 108px;}
 input#cracha{width: 50px;}
 
