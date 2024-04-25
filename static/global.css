@@ -1,7 +1,20 @@
 *{margin: 0;padding: 0}
-input{border: none;outline: none}
-button{background: none;border: none;cursor: pointer}
+
+input, button{border: none;outline: none;outline: none}
+button{background: none;cursor: pointer}
 
 .row,.col{display: flex}
 .row{flex-direction: row;justify-content: center}
 .col{flex-direction: column}
+
+::-webkit-scrollbar {
+    width: 3px;
+    scrollbar-width: thin;
+    scrollbar-color: #333 #fff
+}
+::-webkit-scrollbar-track {
+    background: #fff
+}
+::-webkit-scrollbar-thumb {
+    background: #333
+}
