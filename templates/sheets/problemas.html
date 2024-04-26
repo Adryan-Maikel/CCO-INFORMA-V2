@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Adryan Maikel">
+    <title>Problemas</title>
+    <link rel="stylesheet" href="/static/sheets/sheet.css">
+    <script type="module" src="/static/sheets/problema.js" defer></script>
+    <script src="/static/font-awesome.js" crossorigin="anonymous"></script>
+    
+    <style>
+/*  */
+input{width: 167px}
+    </style>
+</head>
+<body>
+    <header><h1>Problemas</h1></header>
+
+    <section>
+        <h2>Problemas</h2>
+        <table border="1px">
+            <caption>
+                <div class="row">
+                    <h3>Problemas</h3>
+                    <button id="add-problema"><i class="fa-solid fa-plus"></i></button>
+                </div>
+            </caption>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Problema</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>{% for row_id, row in rows %}
+                    <td align="right" id="id-row-{{ row_id + 1 }}">
+                        {{ row_id + 1 }}
+                    </td>
+                    <td align="left" id="problema-row-{{ row_id + 1 }}">
+                        {{ row }}
+                    </td>
+                    <td>
+                        <button class="edit" id="edit-row-{{ row_id + 1 }}">
+                            <i class="fa-solid fa-pencil"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="trash" id="del-row-{{ row_id + 1 }}">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>{% endfor %}
+            </tbody>
+        </table>
+
+        <form action="#" method="post" autocomplete="off">
+            <div class="row">
+                <div class="box">
+                    <span>0</span>
+                </div>
+                <div class="box">
+                    <input type="text" id="problema" name="problema" placeholder="Problema">
+                </div>
+                <div class="box confirm">
+                    <button type="submit"><i class="fa-solid fa-check"></i></button>
+                </div>
+                <div class="box cancel">
+                    <button type="reset"><i class="fa-solid fa-ban"></i></button>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <footer><address>Adryan Maikel</address></footer>
+</body>
+</html>

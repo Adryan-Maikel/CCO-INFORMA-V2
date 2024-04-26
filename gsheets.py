@@ -18,10 +18,10 @@ def get_range(_sheet: str, table_name: str, range: str) -> list:
 
 def del_row(_sheet: str, sheet_name: str, row: int):
     SHEETS = SERVICE.spreadsheets().get(spreadsheetId=_sheet).execute()\
-        .get('sheets', [])
+        .get("sheets", [])
     for sheet in SHEETS:
         if sheet["properties"]["title"] == sheet_name:
-            SHEET_ID = sheet['properties']['sheetId']
+            SHEET_ID = sheet["properties"]["sheetId"]
             break
     if SHEET_ID is None:
         return
@@ -63,7 +63,7 @@ OPERATORS["update"]("Adryan", 153, 1)\
 """
 
 
-def informations(letter_row: str) -> dict[str]:
+def informations(_sheet: str) -> dict[str]:
     """
 
     OPERATORS["get"]()
@@ -74,19 +74,16 @@ def informations(letter_row: str) -> dict[str]:
 
     OPERATORS["update"]("Adryan", 153, 1)
     """
-    get = get_range(SHEETS["informations"], "Informações",
-                    f"{letter_row}2:{letter_row}")
 
     return {
-        "get": lambda: [_row[0] for _row in get],
-        "add": lambda value: add_row(SHEETS["informations"],
-                                     "Informações!"+letter_row+f"{len(get)+2}",
-                                     [value]),
-        "del": lambda row: del_row(SHEETS["informations"], "Informações", row),
-        "update": lambda value, row:
-            update_row(SHEETS["informations"],
-                       f"Informações!{letter_row}{row}:{letter_row}{row}",
-                       [value])
+        "get": lambda: [_row[0] if _row else ""
+                        for _row in get_range(SHEETS["informations"], _sheet,
+                                              "A2:B")],
+        "add": lambda value:
+            add_row(SHEETS["informations"], f"{_sheet}!A:B", value),
+        "del": lambda row: del_row(SHEETS["informations"], _sheet, row),
+        "update": lambda value, i:
+            update_row(SHEETS["informations"], f"{_sheet}!A{i}:B{i}", value)
     }
 
 
