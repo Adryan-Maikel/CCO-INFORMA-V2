@@ -8,7 +8,8 @@ caption{
 }
 caption>.row{gap: 5px;}
 table{margin-left: 4px;}
-table, form{width: 339px}
+table{width: 338px}
+form{width: 332px}
 form{
     position: absolute;
     z-index: 9;
@@ -18,10 +19,10 @@ form{
 }
 form.open{top: 23px}
 
-form>.row{width: 334px;justify-content: start;gap: 1px;background: #fff;}
-form>.row>.box:nth-child(1){width: 15px}
+form>.row{width: 100%;justify-content: center;gap: 2px;background: #fff;}
+form>.row>.box:nth-child(1){width: 16px;}
 form>.row>.box:nth-child(1)>span{display: block;text-align: right}
-form>.row>.box:nth-child(4){width: 45px;}
+form>.row>.box:nth-child(4){width: 44px;}
 form>.row>.box:nth-child(5){width: 51px;}
 
 th,td,.box{
@@ -58,6 +59,6 @@ input[type=number] {
     text-align: right;
 }
 
-input#operator{width: 108px;}
-input#cracha{width: 50px;}
+input#operator{width: 102px;}
+input#cracha{width: 51px;}
 
