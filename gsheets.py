@@ -52,6 +52,7 @@ OPERATORS = {
         SHEETS["informations"], f"Operators!A{row}:B{row}", vals)
 }
 """\
+
 OPERATORS["get"]()
 
 OPERATORS["add"](["Operador", 153])
@@ -61,6 +62,40 @@ OPERATORS["del"](9)
 OPERATORS["update"]("Adryan", 153, 1)\
 """
 
+
+def informations(letter_row: str) -> dict[str]:
+    """
+
+    OPERATORS["get"]()
+
+    OPERATORS["add"](["Operador", 153])
+
+    OPERATORS["del"](9)
+
+    OPERATORS["update"]("Adryan", 153, 1)
+    """
+    get = get_range(SHEETS["informations"], "Informações",
+                    f"{letter_row}2:{letter_row}")
+
+    return {
+        "get": lambda: [_row[0] for _row in get],
+        "add": lambda value: add_row(SHEETS["informations"],
+                                     "Informações!"+letter_row+f"{len(get)+2}",
+                                     [value]),
+        "del": lambda row: del_row(SHEETS["informations"], "Informações", row),
+        "update": lambda value, row:
+            update_row(SHEETS["informations"],
+                       f"Informações!{letter_row}{row}:{letter_row}{row}",
+                       [value])
+    }
+
+
 if __name__ == "__main__":
+    # print(informations("sentidos")["get"]())
+    for letter in "A", "B", "C":
+        # informations(letter)["add"]("CU")
+        pass
+    # informations("C")["del"](14)
+    informations("C")["update"]("CU", 2)
     # print(OPERATORS["get"]())
-    OPERATORS["update"]("Adryan", 154, 1)
+    # OPERATORS["update"]("Adryan", 154, 1)

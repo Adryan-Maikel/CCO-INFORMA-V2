@@ -3,7 +3,7 @@
 """
 
 from flask import Flask, render_template, request
-from gsheets import OPERATORS
+from gsheets import OPERATORS, informations
 
 APP = Flask(__name__)
 
@@ -19,6 +19,9 @@ def sheet(name: str):
         case "Operators":
             VALUES = enumerate(OPERATORS["get"]())
             return render_template("sheets/operators.html", rows=VALUES)
+        case "Informations":
+            VALUES = informations("A")["get"]
+            return render_template("sheets/informations.html", rows=VALUES)
         case "_":
             return ""
 
