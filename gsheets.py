@@ -5,7 +5,7 @@ CREDS = Credentials.from_service_account_file("credentials.json", scopes=[
     "https://www.googleapis.com/auth/spreadsheets"])
 SERVICE = get_sheet("sheets", "v4", credentials=CREDS)
 
-SHEETS = {"informations": "1XPNb_bDiJNHYY9X5o_h4n7Uu66MZ0iO_AGLnQpXV-4Q",
+SHEETS = {"informations": "1znsSuDR7dkh_c9M-IMjAHrQ2qqc_Qiq5nFow1QBwEw0",
           "cco-informa": ""}
 
 
@@ -23,6 +23,7 @@ def del_row(_sheet: str, sheet_name: str, row: int):
         if sheet["properties"]["title"] == sheet_name:
             SHEET_ID = sheet["properties"]["sheetId"]
             break
+
     if SHEET_ID is None:
         return
 
@@ -88,11 +89,11 @@ def informations(_sheet: str) -> dict[str]:
 
 
 if __name__ == "__main__":
-    # print(informations("sentidos")["get"]())
-    for letter in "A", "B", "C":
-        # informations(letter)["add"]("CU")
-        pass
+    print(informations("Sentidos")["get"]())
+    # for letter in "A", "B", "C":
+    # informations(letter)["add"]("CU")
+    # pass
     # informations("C")["del"](14)
-    informations("C")["update"]("CU", 2)
+    # informations("C")["update"]("CU", 2)
     # print(OPERATORS["get"]())
     # OPERATORS["update"]("Adryan", 154, 1)

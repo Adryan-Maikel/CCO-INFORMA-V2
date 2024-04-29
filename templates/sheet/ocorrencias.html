@@ -4,32 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Adryan Maikel">
-    <title>Problemas</title>
-    <link rel="stylesheet" href="/static/sheets/sheet.css">
-    <script type="module" src="/static/sheets/problema.js" defer></script>
+    <title>Ocorrências</title>
+    <link rel="stylesheet" href="/static/sheet/sheet.css">
+    <script type="module" src="/static/sheet/ocorrencia.js" defer></script>
     <script src="/static/font-awesome.js" crossorigin="anonymous"></script>
-    
-    <style>
-/*  */
-input{width: 167px}
-    </style>
 </head>
 <body>
-    <header><h1>Problemas</h1></header>
+    <header><h1>Ocorrências</h1></header>
 
     <section>
-        <h2>Problemas</h2>
+        <h2>Ocorrências</h2>
         <table border="1px">
             <caption>
                 <div class="row">
-                    <h3>Problemas</h3>
-                    <button id="add-problema"><i class="fa-solid fa-plus"></i></button>
+                    <h3>Ocorrências</h3>
+                    <button id="add-ocorrencia"><i class="fa-solid fa-plus"></i></button>
                 </div>
             </caption>
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Problema</th>
+                    <th>Ocorrência</th>
                     <th>Editar</th>
                     <th>Excluir</th>
                 </tr>
@@ -39,7 +34,7 @@ input{width: 167px}
                     <td align="right" id="id-row-{{ row_id + 1 }}">
                         {{ row_id + 1 }}
                     </td>
-                    <td align="left" id="problema-row-{{ row_id + 1 }}">
+                    <td align="left" id="ocorrencia-row-{{ row_id + 1 }}">
                         {{ row }}
                     </td>
                     <td>
@@ -58,11 +53,14 @@ input{width: 167px}
 
         <form action="#" method="post" autocomplete="off">
             <div class="row">
+                <h3>Ocorrência</h3>
+            </div>
+            <div class="row">
                 <div class="box">
                     <span>0</span>
                 </div>
                 <div class="box">
-                    <input type="text" id="problema" name="problema" placeholder="Problema">
+                    <input type="text" id="ocorrencia" name="ocorrencia" placeholder="Ocorrência">
                 </div>
                 <div class="box confirm">
                     <button type="submit"><i class="fa-solid fa-check"></i></button>

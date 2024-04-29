@@ -1,0 +1,17 @@
+@import "./global.css";
+body{
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+}
+iframe{
+    width: 350px;
+    height: 650px;
+    border: 1px solid;
+}
+@media screen and (max-width: 450px ) {
+    iframe{
+        width: 100vw;
+        height: calc(100vh - 2px);
+    }
+}
