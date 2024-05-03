@@ -1,9 +1,19 @@
 from google.oauth2.service_account import Credentials
 from gspread import authorize
 
-CLIENT = authorize(
-    Credentials.from_service_account_file("credentials.json", scopes=[
-        "https://www.googleapis.com/auth/spreadsheets"]))
+import os
+import json
+
+debug = False
+if debug:
+    CLIENT = authorize(
+        Credentials.from_service_account_file("credentials.json", scopes=[
+            "https://www.googleapis.com/auth/spreadsheets"]))
+else:
+    CREDENTIALS = os.environ.get("GOOGLE_CREDENTIALS")
+    CLIENT = authorize(Credentials.from_service_account_info(
+        json.loads(CREDENTIALS), scopes=[
+            "https://www.googleapis.com/auth/spreadsheets"]))
 
 SS_DADOS = CLIENT.open_by_key("101ykzDT_qWUN_CzQ4uVyR25hTe6KERvVVOkzSGtbDNk")
 WS_DADOS = SS_DADOS.worksheet("Dados")
