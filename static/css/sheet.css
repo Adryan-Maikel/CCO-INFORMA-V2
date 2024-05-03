@@ -1,0 +1,21 @@
+@import "../css/global.css";
+section{width: 100%;height: calc(100% - 30px);padding: 5px 0 0 0;}
+.table{position: relative;overflow-x: hidden;overflow-y: overlay;z-index: 11;}
+table{border-color: var(--dark);position: relative;z-index: 10;}
+table thead tr td{text-align: center;font-size: 18px;font-weight: 700;padding: 2px 5px;}
+table tbody tr td:first-child,table caption.Operadores~tbody tr td:nth-child(3) input{text-align: right;}
+table tbody tr td{padding: 0 2px}
+
+input{height: 25px;position: relative;z-index: 1;}
+table caption.Ocorrencias~tbody tr td:nth-child(2){width: 310px;}
+table caption.Problemas~tbody tr td:nth-child(2){width: 230px;}
+table caption.Operadores~tbody tr td:nth-child(3){width: 50px;}
+
+.buttons{gap: 2px;padding-top: 2px;padding-bottom: 2px}
+td.buttons{position: relative;overflow: hidden;}
+
+div.buttons{position: absolute;transform: translateY(-30px);transition: transform .5s ease-out;}
+div.buttons.revel{transform: translateY(0);}
+
+header,footer{display: none;}
+popup{position: absolute;}

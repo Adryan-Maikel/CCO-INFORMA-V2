@@ -1,63 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APP</title>
-    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon">
+    <meta name="author" content="Adryan Maikel">
+    <title>*CCO Informa*</title>
+    <link rel="shortcut icon" href="/stacit/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/static/css/index.css">
-    <script src="/static/js/scripts.js" type="module" defer></script>
-    <script src="/static/js/index.js" defer></script>
-    <script src="https://kit.fontawesome.com/3b629842c1.js" crossorigin="anonymous"></script>
+    <script type="module" src="/static/js/index.js" defer></script>
+    <script src="/static/js/font-awesome.js" crossorigin="anonymous"></script>
 </head>
-<body>
-    <header>
-        <h1>APP</h1>
-    </header>
-    <main class="center">
-        <section id="smartphone">
-            <img id="iphone" src="/static/img/iphone.png" alt="imagem de um iphone 6">
-            <div class="screen">
-                <div class="status-bar row">
-                    <span id="relogio">00:00</span>
-                    <div id="open-menu" class="icons center">
-                        <i class="fa-solid fa-gear"></i>
-                    </div>
-                    <div class="row">
-                        <div id="i-wifi" class="icons center">
-                            <i class="fa-solid fa-wifi"></i>
-                            <i class="fa-solid fa-minus"></i>
-                        </div>
-                        <i class="fa-solid fa-battery-full"></i>
-                    </div>
-                </div>
-                <div class="menu-options">
-                    <div class="row">
-                        <label for="show_seconds" class="row button">
-                            <span>Mostrar segundos</span>
-                            <input type="checkbox" id="show_seconds" class="show_seconds">
-                            <div class="icons center">
-                                <i class="fa-solid fa-check"></i>
-                                <i class="fa-solid fa-x"></i>
-                            </div>
-                        </label>
-                        <label for="dark_mode" class="row button">
-                            <span>Dark mode</span>
-                            <input type="checkbox" name="dark_mode" id="dark_mode">
-                            <div class="icons center">
-                                <i class="fa-solid fa-check"></i>
-                                <i class="fa-solid fa-x"></i>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-                <iframe src="/login" frameborder="0"></iframe>
+<body class="bg-white">
+    <header><h1>*CCO Informa*</h1>
+    
+        <div class="row">
+            <div class="buttons icons">
+                <span>Configurações</span>
+                <button id="open-config"><i class="fa-solid fa-gear"></i></button>
             </div>
-            <div id="buttons"></div>
+        </div>
+    
+
+        <div id="menu-configurations">
+            <h3>Configurações</h3>
+            <div class="row">
+                <div class="buttons icons">
+                    <div class="row">
+                        <span id="span-dark-mode" class="">Dark-Mode</span>
+                        <button id="dark-mode"><i class="fa-solid fa-moon"></i></button>
+                    </div>
+                </div>
+
+                <div class="buttons icons">
+                    <div class="row">
+                        <span id="span-cursor" class="">Cursor Pers.</span>
+                        <button id="cursor"><i class="fa-solid fa-arrow-pointer"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="buttons icons">
+                    <button id="confirm-config"><i class="fa-solid fa-check"></i></button>
+                </div>
+                <div class="buttons icons">
+                    <button id="cancel-config"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+        </div>
+
+    <div class="row">
+
+    </div>
+
+    </header>
+    
+    <main class="col">
+
+        <section class="col">
+            <h2>*CCO Informa*</h2>
+    
+            <iframe src="/edit/sheets" frameborder="0"></iframe>
         </section>
     </main>
-    <footer>
-        <address>Adryan Maikel</address>
-    </footer>
+
+    <footer><address>Adryan Maikel!</address></footer>
 </body>
 </html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Sheet</title>
+    <link rel="stylesheet" href="/static/css/sheet.css">
+    <script type="module" src="/static/js/sheet.js" defer></script>
+    <script src="/static/js/font-awesome.js" crossorigin="anonymous"></script>
+
+</head>
+<body class="bg-white">
+    <header><h1>Editar tabela</h1></header>
+    <section class="col">
+        <div class="table">
+        <table border="1px" class="bg-white">
+            <caption class="{{ table }} bg-white"><h2>{{ table }}</h2></caption>
+            <thead>
+                <tr>
+                    <td>Id</td>{% for col in cols %}
+                    <td>{{ col }}</td>{% endfor %}
+                    <td>Ações</td>
+                </tr>
+            </thead>
+            <tbody>{% for row in rows %}
+                <tr id="row-{{ row[0] }}">{% for cell in row %}{% if loop.first %}
+                    <td>{{ cell }}</td>{% else %}
+                    <td><input type="text" value="{{ cell }}" disabled></td>{% endif %}{% endfor %}
+                    <td class="buttons icons center">
+                        <button id="edit-{{ row[0] }}"><i class="fa-solid fa-pencil"></i></button>
+                        <button id="del-{{ row[0] }}"><i class="fa-solid fa-trash"></i></button>
+                        <div id="btns-r{{row[0]}}" class="buttons icons center">
+                            <button id="edit-{{ row[0] }}"><i class="fa-solid fa-check"></i></button>
+                            <button id="del-{{ row[0] }}"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </td>
+                </tr>{% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </section>
+    <footer><address>Adryan Maikel</address></footer>
+</body>
+</html>

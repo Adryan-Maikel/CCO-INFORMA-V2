@@ -1,70 +1,46 @@
-// Configurações gerais
-function update_cookie_config(configs){
-    const DATA = JSON.stringify(configs)
-    const DATE = new Date()
-    DATE.setTime(DATE.getTime() + (8000 * 24 * 60 * 60 * 1000))
-    document.cookie = `configurations=${DATA};expires=${DATE.toUTCString()};path=/`
-}
-function load_cookie_config(){
-    var configurations = {"dark_mode": false, "show_seconds": false}
-    const cookies = decodeURIComponent(document.cookie).split(';')
-    for(var i = 0; i < cookies.length; i++){
-        var cookie = cookies[i].trim();
-        if(cookie.indexOf("configurations=") === 0)
-            return JSON.parse(cookie.substring("configurations=".length, cookie.length))    
-    }
-    update_cookie_config(configurations)
-    return configurations
-}
-var configurations = load_cookie_config()
+import{ load_cookie_configurations, update_cookie_configurations, toogle_option_menu, load_dark_mode }from"./global.js";
 
-// Exibir os segundos
-const input_show_seconds = window.document.getElementById("show_seconds")
-input_show_seconds.checked = configurations["show_seconds"]
-input_show_seconds.addEventListener("click", (events)=>{
-    configurations["show_seconds"] = events.target.checked
-    update_cookie_config(configurations)
-})
+var configurations = load_cookie_configurations();
+load_dark_mode(configurations);
 
-COLORS_WHITE = {
-    "dark": "#222",
-    "white": "#FFF",
-    "white_bg": "#F5F5F5",
-    "gray_bg": "#CCC",
-    "blue": "#007bff",
-    "red": "#dc3545",
-    "green": "#28a745"
+const menu_config = document.getElementById("menu-configurations");
+const confirm_button = document.getElementById("confirm-config");
+const cancel_button = document.getElementById("cancel-config");
+const dark_mode_button = document.getElementById("dark-mode");
+const span_dark_mode = document.getElementById("span-dark-mode");
+const cursor_button = document.getElementById("cursor");
+const span_cursor = document.getElementById("span-cursor");
+const open_config = document.getElementById("open-config");
+
+const update_color_spans = ()=>{
+    span_dark_mode.classList = configurations.dark_mode?["color-green"]:["color-red"];
+    span_cursor.classList = configurations.cursor_personalizado?["color-green"]:["color-red"];
+}
+const toogle_dark_mode = ()=>{
+    configurations = toogle_option_menu(configurations, "dark_mode");
+    update_color_spans();
+}
+const toogle_cursor=()=>{
+    configurations = toogle_option_menu(configurations, "cursor_personalizado");
+    update_color_spans();
+}
+const confirm_alterations = ()=>{
+    update_cookie_configurations(configurations);
+}
+const cancel_alterations = ()=>{
+    menu_config.classList.remove("revel");
+    dark_mode_button.removeEventListener("click", toogle_dark_mode);
+    cursor_button.removeEventListener("click", toogle_cursor);
+    confirm_button.removeEventListener("click", confirm_alterations);
+    cancel_button.removeEventListener("click", cancel_alterations);
+}
+const open_config_menu = ()=>{
+    menu_config.classList.add("revel");
+    update_color_spans()
+    dark_mode_button.addEventListener("click", toogle_dark_mode)
+    cursor_button.addEventListener("click", toogle_cursor);
+    confirm_button.addEventListener("click", confirm_alterations)
+    cancel_button.addEventListener("click", cancel_alterations)
 }
 
-// Modo escuro
-const input_dark_mode = window.document.getElementById("dark_mode")
-input_dark_mode.checked = configurations["dark_mode"]
-input_dark_mode.addEventListener("click", (events)=>{
-    configurations["dark_mode"] = events.target.checked
-    update_cookie_config(configurations)
-})
-
-// Horário
-const menu = window.document.querySelector(".menu-options")
-window.document.getElementById("open-menu").addEventListener("click", ()=>menu.classList.toggle("open"))
-const clock = window.document.getElementById("relogio")
-function set_hour(){
-    const date = new Date()
-    const hour = date.getHours()
-    const min = date.getMinutes()
-    const sec = date.getSeconds()
-    
-    var format_hour = `${hour<10?"0"+hour:hour}:${min<10?"0"+min:min}`
-    clock.textContent = !configurations["show_seconds"]?format_hour:`${format_hour}:${sec<10?"0"+sec:sec}`
-}
-set_hour()
-setInterval(set_hour, 1000)
-
-// Icone de wi-fi
-const status_icon = document.querySelector("#i-wifi > .fa-minus")
-function check_connection(){
-    status_icon.style.display = navigator.onLine? "none": "block"
-}
-check_connection()
-window.addEventListener("online", check_connection)
-window.addEventListener("offline", check_connection)
+open_config.addEventListener("click", open_config_menu)
